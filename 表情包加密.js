@@ -1,4 +1,4 @@
-// 版本1
+// 第一版
 function encodeToEmojis(text){
   // 普通数字起始编码
   const numberStartCode = 128000;
@@ -50,6 +50,27 @@ function decodeEmoji(text){
     }else{
       res+= String.fromCodePoint(curCode - othercharStartCode)
      }
+  }
+  return res;
+}
+// 第二版 不区分字符类型
+function encodeToEmojis1(text){
+  // 起始编码
+  const startCode = 128000;
+  let res = "";
+  for(let s of text) {
+    const curCode = s.charCodeAt();
+     res += String.fromCodePoint(startCode + curCode);
+  }
+  return res;
+}
+function decodeEmoji1(text){
+  // 起始编码
+  const startCode = 128000;
+  let res = "";
+  for(let s of text) {
+    const curCode = s.codePointAt();
+     res += String.fromCodePoint(curCode - startCode);
   }
   return res;
 }
